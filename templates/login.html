@@ -4,7 +4,7 @@
 
 {% block header %}
 <header>
-    <a class="home" href="/"><h2>CheckMate</h2></a>
+    <a class="header" href="/"><h2>CheckMate</h2></a>
 </header>
 {% endblock %}
 
@@ -23,5 +23,11 @@
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
     <a class="signup-btn" href="/signup"><span>Not registered yet? </span><span class="create-acc">Create an account</span></a>
+</div>
+{% endblock %}
+
+{% block image %}
+<div class="image-container">
+    <img src="{{url_for('static', filename='img/checkmate-removebg-preview.png')}}" alt="">
 </div>
 {% endblock %}

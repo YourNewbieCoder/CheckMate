@@ -69,7 +69,7 @@ a{
     display: inline-block;
     margin-top: 20px;
 }
-.home{
+.header{
     background: none;
     padding: 0;
     margin: 0;
@@ -138,5 +138,15 @@ span{
 }
 .colored-center{
     background: var(--colorprimary);
+    text-align: center;
+}
+/* CSS for homepage */
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+li{
     text-align: center;
 }

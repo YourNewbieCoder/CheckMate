@@ -4,7 +4,7 @@
 
 {% block header %}
 <header>
-    <a class="home" href="/"><h2>CheckMate</h2></a>
+    <a class="header" href="/"><h2>CheckMate</h2></a>
 </header>
 {% endblock %}
 
@@ -12,4 +12,10 @@
 <h1>CheckMate: Revolutionize Checking Math Exams</h1>
 <p>Capture, Grade, and Track Student Scores with Ease</p>
 <a href="/login">Try it now!</a>
+{% endblock %}
+
+{% block image %}
+<div class="image-container">
+    <img src="{{url_for('static', filename='img/checkmate-removebg-preview.png')}}" alt="">
+</div>
 {% endblock %}
