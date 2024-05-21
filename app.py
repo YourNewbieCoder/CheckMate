@@ -18,5 +18,9 @@ def signup():
 def home():
     return render_template('home.html')
 
+@app.route('/create-key')
+def createKey():
+    return render_template('create-key.html')
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)

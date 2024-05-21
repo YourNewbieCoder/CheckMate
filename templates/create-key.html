@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}CheckMate-Create Answer Key{% endblock %}
+
+{% block header %}
+<header class="colored-center">
+    <a class="header" href="/home"><h2>CheckMate</h2></a>
+</header>
+{% endblock %}
+{% block content %}
+<h1>Create Exam Answer Key</h1>
+<form id="examNameForm">
+    <div class="form-group">
+        <label for="examName">Exam Title:</label>
+        <input type="text" id="examName" name="examName" placeholder="Enter Exam Title" required>
+    </div>
+    <button type="submit">Next</button>
+</form>
+
+<form id="answerKeyForm" style="display: none;" method="POST" action="/submit">
+    <h2 id="examTitle"></h2>
+    <input type="hidden" id="hiddenExamName" name="examName">
+    <div class="form-group">
+        <label for="question1">Question 1:</label>
+        <input type="text" id="question1" name="answers[]" placeholder="Answer for Question 1">
+    </div>
+    <div class="form-group">
+        <label for="question2">Question 2:</label>
+        <input type="text" id="question2" name="answers[]" placeholder="Answer for Question 2">
+    </div>
+    <!-- Repeat similar blocks for more questions -->
+    <div class="form-group">
+        <label for="question3">Question 3:</label>
+        <input type="text" id="question3" name="answers[]" placeholder="Answer for Question 3">
+    </div>
+    <div class="form-group">
+        <label for="question4">Question 4:</label>
+        <input type="text" id="question4" name="answers[]" placeholder="Answer for Question 4">
+    </div>
+    <button type="button" id="addQuestionButton">Add More Questions</button>
+    <button type="submit">Submit Answer Key</button>
+</form>
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
+
+{% endblock %}
