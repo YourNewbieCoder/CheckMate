@@ -22,5 +22,9 @@ def home():
 def createKey():
     return render_template('create-key.html')
 
+@app.route('/check-exam')
+def checkExam():
+    return render_template('check-exam.html')
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

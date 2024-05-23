@@ -7,10 +7,12 @@
 </header>
 {% endblock %}
 {% block content %}
-<ul>
-    <li><a class="btn-group" href="">Check Exams</a></li>
-    <li><a class="btn-group" href="/create-key">Create Answer Key</a></li>
-    <li><a class="btn-group" href="">View Student Records</a></li>
-    <li><a class="btn-group" href="/login">Logout</a></li>
-</ul>
+<div class="card">
+    <ul>
+        <li><a class="btn-group" href="/create-key">Create Answer Key</a></li>
+        <li><a class="btn-group" href="/check-exam">Check Exams</a></li>
+        <li><a class="btn-group" href="">View Student Records</a></li>
+        <li><a class="btn-group" href="/login">Logout</a></li>
+    </ul>
+</div>
 {% endblock %}

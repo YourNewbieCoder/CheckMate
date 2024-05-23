@@ -17,29 +17,37 @@
     <button type="submit">Next</button>
 </form>
 
-<form id="answerKeyForm" style="display: none;" method="POST" action="/submit">
+<form id="answerKeyForm" method="POST" action="/submit">
     <h2 id="examTitle"></h2>
     <input type="hidden" id="hiddenExamName" name="examName">
-    <div class="form-group">
-        <label for="question1">Question 1:</label>
-        <input type="text" id="question1" name="answers[]" placeholder="Answer for Question 1">
+    <div id="questionsContainer">
+        <div class="form-group">
+            <label for="question1">Question 1:</label>
+            <textarea id="question1" name="questions[]" placeholder="Enter Question 1"></textarea>
+        
+            <label for="question1_asked">What is asked?</label>
+            <input type="text" id="question1_asked" name="answers[question1][asked]" placeholder="What is asked?">
+        
+            <label for="question1_given">What are given facts?</label>
+            <input type="text" id="question1_given" name="answers[question1][given]" placeholder="What are given facts?">
+        
+            <label for="question1_operation">What operation will be used?</label>
+            <input type="text" id="question1_operation" name="answers[question1][operation]" placeholder="What operation will be used?">
+        
+            <label for="question1_sentence">What is the number sentence?</label>
+            <input type="text" id="question1_sentence" name="answers[question1][sentence]" placeholder="What is the number sentence?">
+        
+            <label for="question1_solution">Solution</label>
+            <textarea id="question1_solution" name="answers[question1][solution]" placeholder="Solution"></textarea>
+        
+            <label for="question1_final_answer">What is the final answer?</label>
+            <input type="text" id="question1_final_answer" name="answers[question1][final_answer]" placeholder="What is the final answer?">
+        </div>
     </div>
-    <div class="form-group">
-        <label for="question2">Question 2:</label>
-        <input type="text" id="question2" name="answers[]" placeholder="Answer for Question 2">
-    </div>
-    <!-- Repeat similar blocks for more questions -->
-    <div class="form-group">
-        <label for="question3">Question 3:</label>
-        <input type="text" id="question3" name="answers[]" placeholder="Answer for Question 3">
-    </div>
-    <div class="form-group">
-        <label for="question4">Question 4:</label>
-        <input type="text" id="question4" name="answers[]" placeholder="Answer for Question 4">
-    </div>
+
     <button type="button" id="addQuestionButton">Add More Questions</button>
     <button type="submit">Submit Answer Key</button>
 </form>
-<script src="{{url_for('static', filename='js/script.js')}}"></script>
+<script src="{{url_for('static', filename='js/create-key.js')}}"></script>
 
 {% endblock %}
