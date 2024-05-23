@@ -12,10 +12,18 @@
 <form id="examNameForm">
     <div class="form-group">
         <label for="examName">Exam Title:</label>
-        <input type="text" id="examName" name="examName" placeholder="Enter Exam Title" required>
+        <select id="examName" name="examName" required>
+            <option value="" disabled selected>Select an Exam Title</option>
+            <option value="1st Quarter Exam">1st Quarter Exam</option>
+            <option value="2nd Quarter Exam">2nd Quarter Exam</option>
+            <option value="3rd Quarter Exam">3rd Quarter Exam</option>
+            <option value="4th Quarter Exam">4th Quarter Exam</option>
+            <!-- Add more options as needed -->
+        </select>
     </div>
     <button type="submit">Next</button>
 </form>
+
 
 <form id="answerKeyForm" method="POST" action="/submit">
     <h2 id="examTitle"></h2>

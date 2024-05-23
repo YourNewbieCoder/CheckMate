@@ -109,6 +109,14 @@ input {
     border-radius: 4px;
     font: var(--p);
 }
+select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: var(--p);
+}
 button {
     width: 100%;
     display: inline-block;
