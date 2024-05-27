@@ -64,5 +64,9 @@ def save_image():
     image_url = '/static/captured_images/captured_image.png'
     return jsonify({'success': True, 'image_url': image_url}), 200
 
+@app.route('/view-record')
+def viewRecord():
+    return render_template('view-record.html')
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

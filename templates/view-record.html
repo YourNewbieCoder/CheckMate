@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}CheckMate-View Student Records{% endblock %}
+
+{% block header %}
+<header class="colored-center">
+    <a class="header" href="/home"><h2>CheckMate</h2></a>
+    <h3>View Student Records</h3>
+</header>
+{% endblock %}
+
+{% block content %}
+
+<label for="examSelect">Choose an exam:</label>
+<select id="examSelect">
+    <option value="first">First Quarter</option>
+    <option value="second">Second Quarter</option>
+    <option value="third">Third Quarter</option>
+    <option value="fourth">Fourth Quarter</option>
+</select>
+
+<label for="classSelect">Choose a class section:</label>
+<select id="classSelect">
+    <option value="sectionA">Section A</option>
+    <option value="sectionB">Section B</option>
+</select>
+
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Score</th>
+            <th>Date Checked</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows will be populated here -->
+    </tbody>
+</table>
+
+<div>
+    <ul>
+        <li class="check-stud"><a class="btn-group" href="/home">Exit</a></li>
+    </ul>
+</div>
+
+<script src="{{url_for('static', filename='js/view-record.js')}}"></script>
+
+{% endblock %}

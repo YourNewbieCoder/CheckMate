@@ -73,6 +73,7 @@ a{
     background: none;
     padding: 0;
     margin: 0;
+    display: block;
 }
 img{
     width: 100%;
@@ -88,6 +89,7 @@ img{
     border-radius: 32px;
     padding: 20px;
     width:fit-content;
+    overflow: hidden;
 }
 /* On mouse-over, add a deeper shadow */
 .card:hover {
@@ -208,7 +210,7 @@ textarea::placeholder {
 }
 .dropdown {
     position: relative;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .dropdown-toggle {
@@ -218,6 +220,7 @@ textarea::placeholder {
     /* border: 1px solid var(--colortertiary); */
     /* cursor: pointer; */
     border-radius: 32px;
+    /* text-align: center; */
 }
 
 .dropdown-toggle:hover {
@@ -232,7 +235,7 @@ textarea::placeholder {
     /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); */
     /* min-width: 160px; */
     z-index: 1;
-    /* margin: 10px auto; */
+    margin: 10px auto;
     /* align-items: center; */
 }
 
@@ -257,4 +260,16 @@ textarea::placeholder {
     padding: 20px;
     transition: height 0.3s ease;
     overflow: hidden;
+}
+/* CSS for View Records Page */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    /* display: none; */
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
 }
