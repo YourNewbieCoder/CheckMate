@@ -10,53 +10,17 @@
 
 {% block content %}
 <h1>{{ exam }}</h1>
+<div class="video-container">
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="capture-btn">Capture</button>
+</div>
+<div>
+    <ul>
+        <li class="check-stud"><a class="btn-group" href="{{url_for('home')}}">Exit</a></li>
+    </ul>
+</div>
 
-<video id="video" width="640" height="480" autoplay></video>
-<button id="capture-btn">Capture</button>
-
-<script>
-    // Get access to the webcam
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
-            var video = document.getElementById('video');
-            video.srcObject = stream;
-        })
-        .catch(function(err) {
-            console.log("An error occurred: " + err);
-        });
-
-    // Capture image from the webcam
-    document.getElementById('capture-btn').addEventListener('click', function() {
-        var video = document.getElementById('video');
-        var canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        var context = canvas.getContext('2d');
-
-        // Draw the video frame onto the canvas
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        // Convert canvas to data URL
-        var dataURL = canvas.toDataURL('image/png');
-
-        // Send the data URL to the server
-        fetch('/save_image', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ image_data: dataURL })
-        }).then(response => {
-            if (response.ok) {
-                console.log('Image saved successfully!');
-            } else {
-                console.error('Failed to save image.');
-            }
-        }).catch(error => {
-            console.error('Error:', error);
-        });
-    });
-</script>
+<script src="{{url_for('static', filename='js/scan-test.js')}}"></script>
 {% endblock %}
 
 
