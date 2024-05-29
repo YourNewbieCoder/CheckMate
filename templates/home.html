@@ -3,16 +3,18 @@
 {% block title %}CheckMate-Homepage{% endblock %}
 {% block header %}
 <header class="colored-center">
-    <a class="header" href="/home"><h2>CheckMate</h2></a>
+    <a class="header" href="{{url_for('home')}}"><h2>CheckMate</h2></a>
 </header>
 {% endblock %}
 {% block content %}
+<h1>Welcome, {{ current_user.username }}!</h1>
+<p>You have successfully logged in.</p>
 <div class="card">
     <ul>
-        <li><a class="btn-group" href="/create-key">Create Answer Key</a></li>
-        <li><a class="btn-group" href="/check-exam">Check Exams</a></li>
-        <li><a class="btn-group" href="/view-record">View Student Records</a></li>
-        <li><a class="btn-group" href="/login">Logout</a></li>
+        <li><a class="btn-group" href="{{url_for('createKey')}}">Create Answer Key</a></li>
+        <li><a class="btn-group" href="{{url_for('checkExam')}}">Check Exams</a></li>
+        <li><a class="btn-group" href="{{url_for('viewRecord')}}">View Student Records</a></li>
+        <li><a class="btn-group" href="{{url_for('logout')}}">Logout</a></li>
     </ul>
 </div>
 {% endblock %}

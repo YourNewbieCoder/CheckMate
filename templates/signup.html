@@ -12,7 +12,7 @@
 <div class="card" id="signup">
     <h1>Welcome</h1>
     <p>Signup for the CheckMate app</p>
-    <form action="#" method="post">
+    <!-- <form action="#" method="post">
         <div class="form-group">
             <label for="firstname">First Name</label>
             <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" required>
@@ -26,8 +26,14 @@
             <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
         </div>                
         <button type="submit">Signup</button><br>
+    </form> -->
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.username }}
+        {{ form.password }}
+        {{ form.submit }}
     </form>
-    <a class="signup-btn"href="/login"><span>Already have an account? </span><span class="create-acc">Login now</span></a>
+    <a class="signup-btn"href="{{url_for('login')}}"><span>Already have an account? </span><span class="create-acc">Login now</span></a>
 </div>
 {% endblock %}
 

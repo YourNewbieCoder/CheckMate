@@ -270,6 +270,9 @@ table {
 }
 th, td {
     padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
+    border: 2px solid var(--colortertiary2);
+    text-align: left; 
+}
+th{
+    background: var(--colorsecondary);
 }

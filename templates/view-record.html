@@ -4,7 +4,7 @@
 
 {% block header %}
 <header class="colored-center">
-    <a class="header" href="/home"><h2>CheckMate</h2></a>
+    <a class="header" href="{{url_for('home')}}"><h2>CheckMate</h2></a>
     <h3>View Student Records</h3>
 </header>
 {% endblock %}
@@ -40,7 +40,7 @@
 
 <div>
     <ul>
-        <li class="check-stud"><a class="btn-group" href="/home">Exit</a></li>
+        <li class="check-stud"><a class="btn-group" href="{{url_for('home')}}">Exit</a></li>
     </ul>
 </div>
 

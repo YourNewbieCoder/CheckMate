@@ -4,7 +4,7 @@
 
 {% block header %}
 <header class="colored-center">
-    <a class="header" href="/home"><h2>CheckMate</h2></a>
+    <a class="header" href="{{url_for('home')}}"><h2>CheckMate</h2></a>
 </header>
 {% endblock %}
 {% block content %}
@@ -56,6 +56,11 @@
     <button type="button" id="addQuestionButton">Add More Questions</button>
     <button type="submit">Submit Answer Key</button>
 </form>
+<div>
+    <ul>
+        <li class="check-stud"><a class="btn-group" href="{{url_for('home')}}">Exit</a></li>
+    </ul>
+</div>
 <script src="{{url_for('static', filename='js/create-key.js')}}"></script>
 
 {% endblock %}
