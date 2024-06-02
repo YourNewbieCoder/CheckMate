@@ -13,10 +13,12 @@
 <div class="video-container">
     <h3>{{ exam }}</h3>
     <video id="video" autoplay></video>
-    <button id="capture-btn">Capture</button>
 </div>
+
 <div>
     <ul>
+        <li class="check-stud"><button id="capture-btn">Capture Exam</button></li>
+        <li class="check-stud"><button id="switch-btn">Switch Camera</button></li>
         <li class="check-stud"><a class="btn-group" href="{{url_for('home')}}">Exit</a></li>
     </ul>
 </div>

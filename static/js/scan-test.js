@@ -1,5 +1,11 @@
-// Get access to the webcam
-navigator.mediaDevices.getUserMedia({ video: true })
+let currentFacingMode = 'user'; // Default to front camera
+
+function getStream() {
+    navigator.mediaDevices.getUserMedia({ 
+        video: { 
+            facingMode: currentFacingMode 
+        } 
+    })
     .then(function(stream) {
         var video = document.getElementById('video');
         video.srcObject = stream;
@@ -7,8 +13,8 @@ navigator.mediaDevices.getUserMedia({ video: true })
     .catch(function(err) {
         console.log("An error occurred: " + err);
     });
+}
 
-// Capture image from the webcam
 document.getElementById('capture-btn').addEventListener('click', function() {
     var video = document.getElementById('video');
     var canvas = document.createElement('canvas');
@@ -39,3 +45,11 @@ document.getElementById('capture-btn').addEventListener('click', function() {
         console.error('Error:', error);
     });
 });
+
+document.getElementById('switch-btn').addEventListener('click', function() {
+    currentFacingMode = (currentFacingMode === 'user') ? 'environment' : 'user';
+    getStream();
+});
+
+// Initialize with the default camera
+getStream();
