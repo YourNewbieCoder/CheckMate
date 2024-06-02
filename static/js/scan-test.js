@@ -1,18 +1,28 @@
 let currentFacingMode = 'user'; // Default to front camera
+let currentStream = null;
 
-function getStream() {
-    navigator.mediaDevices.getUserMedia({ 
-        video: { 
-            facingMode: currentFacingMode 
-        } 
-    })
-    .then(function(stream) {
+async function getStream() {
+    // Stop any existing stream
+    if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop());
+    }
+
+    try {
+        currentStream = await navigator.mediaDevices.getUserMedia({ 
+            video: { facingMode: currentFacingMode } 
+        });
+
         var video = document.getElementById('video');
-        video.srcObject = stream;
-    })
-    .catch(function(err) {
+        video.srcObject = currentStream;
+        updateStatusMessage(`Switched to ${currentFacingMode === 'user' ? 'front' : 'back'} camera.`);
+    } catch (err) {
         console.log("An error occurred: " + err);
-    });
+        updateStatusMessage(`Failed to switch camera: ${err.message}`);
+    }
+}
+
+function updateStatusMessage(message) {
+    document.getElementById('status-msg').innerText = message;
 }
 
 document.getElementById('capture-btn').addEventListener('click', function() {
