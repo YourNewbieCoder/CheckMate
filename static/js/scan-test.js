@@ -48,6 +48,7 @@ document.getElementById('capture-btn').addEventListener('click', function() {
     }).then(response => {
         if (response.ok) {
             console.log('Image saved successfully!');
+            window.location.href = '/display-captured';
         } else {
             console.error('Failed to save image.');
         }

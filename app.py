@@ -43,10 +43,8 @@ class RegisterForm(FlaskForm):
             raise ValidationError("That username already exists. Please choose a different one.")
 
 class LoginForm(FlaskForm):
-    username = StringField(validators=[InputRequired(), length(
-        min=4, max=20)], render_kw={"placeholder": "Username"})
-    password = PasswordField(validators=[InputRequired(), length(
-        min=4, max=20)], render_kw={"placeholder": "Password"})
+    username = StringField(validators=[InputRequired(), length(min=4, max=20)], render_kw={"placeholder": "Username"})
+    password = PasswordField(validators=[InputRequired(), length(min=4, max=20)], render_kw={"placeholder": "Password"})
     submit = SubmitField("Login")
 
 def allowed_file(filename):
@@ -112,22 +110,18 @@ def scanTest():
 
 @app.route('/save_image', methods=['POST'])
 def save_image():
-    # Get the image data from the request
     data = request.json
     image_data = data.get('image_data')
 
-    # Create the directory if it doesn't exist
     if not os.path.exists(IMAGE_DIR):
         os.makedirs(IMAGE_DIR)
 
-    # Save the image to the directory
     image_path = os.path.join(IMAGE_DIR, 'captured_image.png')
     with open(image_path, 'wb') as f:
         f.write(base64.b64decode(image_data.split(',')[1]))
 
-    # Return the URL of the saved image
-    image_url = '/static/captured_images/captured_image.png'
-    return jsonify({'success': True, 'image_url': image_url}), 200
+    session['captured_image_path'] = image_path
+    return jsonify({'success': True}), 200
 
 @app.route('/view-record')
 def viewRecord():
@@ -150,6 +144,14 @@ def upload_form():
 @app.route('/display/<filename>')
 def display_file(filename):
     return render_template('display.html', filename=filename)
+
+@app.route('/display-captured')
+def display_captured():
+    image_path = session.get('captured_image_path')
+    if image_path:
+        image_url = url_for('static', filename=f'captured_images/{os.path.basename(image_path)}')
+        return render_template('display-captured.html', image_url=image_url)
+    return redirect(url_for('scanTest'))
 
 if __name__ == "__main__":
     with app.app_context():

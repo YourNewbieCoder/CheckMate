@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}CheckMate-Display Image{% endblock %}
+{% block title %}Display Captured Image{% endblock %}
 
 {% block header %}
 <header class="colored-center">
@@ -10,8 +10,8 @@
 
 {% block content %}
 <div>
-    <h1>Uploaded Image</h1>
-    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image">
+    <h1>Captured Image</h1>
+    <img src="{{ image_url }}" alt="Captured Image">
     <div>
         <a class="btn-group" href="{{ url_for('home') }}">Exit</a>
     </div>
