@@ -1,66 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'home-base.html' %}
 
-{% block title %}CheckMate-Create Answer Key{% endblock %}
+{% block title %}Upload Answer Key{% endblock %}
 
-{% block header %}
-<header class="colored-center">
-    <a class="header" href="{{url_for('home')}}"><h2>CheckMate</h2></a>
-</header>
-{% endblock %}
 {% block content %}
-<h1>Create Exam Answer Key</h1>
-<form id="examNameForm">
-    <div class="form-group">
-        <label for="examName">Exam Title:</label>
-        <select id="examName" name="examName" required>
-            <option value="" disabled selected>Select an Exam Title</option>
-            <option value="1st Quarter Exam">1st Quarter Exam</option>
-            <option value="2nd Quarter Exam">2nd Quarter Exam</option>
-            <option value="3rd Quarter Exam">3rd Quarter Exam</option>
-            <option value="4th Quarter Exam">4th Quarter Exam</option>
-            <!-- Add more options as needed -->
-        </select>
-    </div>
-    <button type="submit">Next</button>
-</form>
+<!-- <h2>Upload Answer Key</h2>
+<form method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="file">Choose Answer Key Image</label>
+    <input type="file" class="form-control-file" id="file" name="file">
+  </div>
+  <button type="submit" class="btn btn-primary">Upload</button>
+</form> -->
 
-
-<form id="answerKeyForm" method="POST" action="/submit">
-    <h2 id="examTitle"></h2>
-    <input type="hidden" id="hiddenExamName" name="examName">
-    <div id="questionsContainer">
-        <div class="form-group">
-            <label for="question1">Question 1:</label>
-            <textarea id="question1" name="questions[]" placeholder="Enter Question 1"></textarea>
-        
-            <label for="question1_asked">What is asked?</label>
-            <input type="text" id="question1_asked" name="answers[question1][asked]" placeholder="What is asked?">
-        
-            <label for="question1_given">What are given facts?</label>
-            <input type="text" id="question1_given" name="answers[question1][given]" placeholder="What are given facts?">
-        
-            <label for="question1_operation">What operation will be used?</label>
-            <input type="text" id="question1_operation" name="answers[question1][operation]" placeholder="What operation will be used?">
-        
-            <label for="question1_sentence">What is the number sentence?</label>
-            <input type="text" id="question1_sentence" name="answers[question1][sentence]" placeholder="What is the number sentence?">
-        
-            <label for="question1_solution">Solution</label>
-            <textarea id="question1_solution" name="answers[question1][solution]" placeholder="Solution"></textarea>
-        
-            <label for="question1_final_answer">What is the final answer?</label>
-            <input type="text" id="question1_final_answer" name="answers[question1][final_answer]" placeholder="What is the final answer?">
-        </div>
-    </div>
-
-    <button type="button" id="addQuestionButton">Add More Questions</button>
-    <button type="submit">Submit Answer Key</button>
-</form>
-<div>
-    <ul>
-        <li class="check-stud"><a class="btn-group" href="{{url_for('home')}}">Exit</a></li>
-    </ul>
+<div class="card" id="upload-card">
+    <h2>Upload Answer Key</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="name">Answer Key Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="file">Choose Answer Key Image</label>
+        <input type="file" id="file" name="file" required>
+        <br>
+        <input type="submit" value="Upload">
+    </form>
 </div>
-<script src="{{url_for('static', filename='js/create-key.js')}}"></script>
 
 {% endblock %}

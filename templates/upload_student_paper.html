@@ -1,0 +1,24 @@
+{% extends 'home-base.html' %}
+
+{% block title %}CheckMate - Upload Student Paper{% endblock %}
+
+{% block content %}
+<div class="card" id="upload-card">
+    <h2>Upload Student Paper</h2>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="exam">Select Exam</label>
+            <select class="form-control" id="exam" name="exam">
+                {% for exam in exams %}
+                <option value="{{ exam.id }}">{{ exam.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="file">Choose Student Paper Image</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+        <input type="submit" value="Upload">
+    </form>
+</div>
+{% endblock %}

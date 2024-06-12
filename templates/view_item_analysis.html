@@ -1,0 +1,24 @@
+{% extends 'home-base.html' %}
+
+{% block title %}Item Analysis{% endblock %}
+
+{% block content %}
+<h2>Item Analysis for Paper ID: {{ student_paper.id }}</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Correct</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in student_paper.item_analysis %}
+        <tr>
+            <td>{{ item.question }}</td>
+            <td>{{ 'Yes' if item.correct else 'No' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a class="btn btn-primary" href="{{ url_for('view_results') }}">Back to Results</a>
+{% endblock %}

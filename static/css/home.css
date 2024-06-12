@@ -28,6 +28,12 @@ body{
     font: var(--h6);
 }
 
+.container{
+    max-width: 1280px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
 nav{
     background: var(--colorprimary);
     height: 100px;
@@ -140,7 +146,7 @@ a.btn-group{
     background: var(--colorsecondary);
     color: var(--colortertiary2);
     padding: 10px 20px;
-    border-radius: 32px;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
@@ -150,7 +156,84 @@ a.btn-group:hover {
     background: var(--colorsecondary2);
     color: var(--colortertiary);
 }
+/* CSS for Card Uploads */
+#upload-card{
+    text-align: left;
+}
+input {
+    width: 100%;
+    padding: 0px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: var(--p);
+}
+input[type=submit]{
+    width: 100%;
+    display: inline-block;
+    padding: 0px;
+    margin-top: 10px;
+    background: var(--colorsecondary2);
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* CSS for Test Bank */
+#test_bank{
+    width:100%;
+}
+button {
+    display: inline-block;
+    padding: 10px;
+    margin-top: 10px;
+    background: var(--colorsecondary);
+    border: none;
+    font: var(--h6);
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    padding: 10px;
+    border: 2px solid var(--colortertiary2);
+    text-align: left;
+}
+th{
+    background: var(--colorsecondary);
+}
+/* CSS for Flash */
+.flashes {
+    list-style-type: none;
+    padding: 0;
+}
+.flashes li {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.flashes .success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.flashes .danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
 
+.form-group {
+    margin-bottom: 20px;
+    padding: 10px;
+}
 
-
-
+select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: var(--p);
+}

@@ -1,0 +1,29 @@
+{% extends 'home-base.html' %}
+
+{% block title %}View Results{% endblock %}
+
+{% block content %}
+<h2>View Results</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>File Path</th>
+            <th>Score</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for paper in student_papers %}
+        <tr>
+            <td>{{ paper.id }}</td>
+            <td>{{ paper.file_path }}</td>
+            <td>{{ paper.score }}</td>
+            <td>
+                <a class="btn btn-info" href="{{ url_for('view_item_analysis', paper_id=paper.id) }}">View Item Analysis</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
