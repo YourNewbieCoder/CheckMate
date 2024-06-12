@@ -8,6 +8,8 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Student Name</th>
+            <th>Student Section</th>
             <th>File Path</th>
             <th>Score</th>
             <th>Actions</th>
@@ -17,6 +19,8 @@
         {% for paper in student_papers %}
         <tr>
             <td>{{ paper.id }}</td>
+            <td>{{ paper.student_name }}</td>
+            <td>{{ paper.student_section }}</td>
             <td>{{ paper.file_path }}</td>
             <td>{{ paper.score }}</td>
             <td>

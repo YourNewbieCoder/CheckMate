@@ -65,6 +65,8 @@ class AnswerKey(db.Model):
 
 class StudentPaper(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    student_name = db.Column(db.String(100), nullable=False)
+    student_section = db.Column(db.String(100), nullable=False)
     file_path = db.Column(db.String(200), nullable=False)
     answers = db.Column(db.PickleType, nullable=False)
     score = db.Column(db.Integer, nullable=False)
@@ -137,6 +139,8 @@ def createKey():
 def upload_student_paper():
     if request.method == 'POST':
         exam_id = request.form['exam']
+        student_name = request.form['student_name']
+        student_section = request.form['student_section']
         file = request.files['file']
 
         if file and allowed_file(file.filename):
@@ -149,12 +153,14 @@ def upload_student_paper():
             # Assuming you have a function to grade the student paper
             score, item_analysis = grade_student_paper(exam_id, extracted_answers)
 
-             # Save the student paper result in the database
+            # Save the student paper result in the database
             new_student_paper = StudentPaper(
                 file_path=filepath,
                 answers=extracted_answers,
                 score=score,
-                item_analysis=item_analysis
+                item_analysis=item_analysis,
+                student_name=student_name,
+                student_section=student_section
             )
             db.session.add(new_student_paper)
             db.session.commit()
