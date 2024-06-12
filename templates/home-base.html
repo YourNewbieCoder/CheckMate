@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}">
+    <script src="https://kit.fontawesome.com/4679d55316.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+        <label class="logo">CheckMate</label>
+        <!-- <a class="navbar-brand" href="{{ url_for('home') }}">CheckMate</a> -->
+        <ul>
+
+            <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('viewRecord') }}">Results</a></li>
+            <li><a href="#">Item Analysis</a></li>
+            <li><a href="#">Test Bank</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+      </nav>
+      <section></section>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
