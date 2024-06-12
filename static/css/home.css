@@ -86,6 +86,7 @@ a.active, a:hover{
     }
     ul{
         position: fixed;
+        background: var(--colorprimary2);
         width: 100%;
         height: 100vh;
         top: 100px;
@@ -95,8 +96,7 @@ a.active, a:hover{
     }
     nav ul li{
         display: block;
-        margin: 50px 0;
-        list-style: 30px;
+        margin: 10px 0;
     }
     nav ul li a{
         font-size: 20px;
@@ -124,10 +124,31 @@ a.active, a:hover{
     padding: 20px;
     width:fit-content;
     overflow: hidden;
+    text-align: center;
 }
 /* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+h1{
+    font: var(--h1);
+}
+p{
+    margin-top: 20px;
+}
+a.btn-group{
+    background: var(--colorsecondary);
+    color: var(--colortertiary2);
+    padding: 10px 20px;
+    border-radius: 32px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+}
+a.btn-group:hover {
+    background: var(--colorsecondary2);
+    color: var(--colortertiary);
 }
 
 

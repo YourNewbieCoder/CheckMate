@@ -5,13 +5,13 @@
 {% block content %}
 <!-- <h2>Welcome, {{ current_user.username }} to CheckMate!</h2> -->
 
-<div class="jumbotron">
+<div class="card">
     <!-- <h1 class="display-4">Welcome to Math Checker</h1> -->
     <h1>Welcome, {{ current_user.username }} to CheckMate!</h1>
-    <p class="lead">Automate the checking of mathematics exams using OCR and NLP.</p>
-    <hr class="my-4">
+    <p>Automate the checking of mathematics exams using OCR and NLP.</p>
+    <hr>
     <p>Get started by uploading an answer key or student papers.</p>
-    <a class="btn btn-outline-warning btn-lg" href="{{ url_for('createKey') }}" role="button">Upload Answer Key</a>
-    <a class="btn btn-outline-secondary btn-lg" href="{{ url_for('checkExam') }}" role="button">Upload Student Paper</a>
+    <a class="btn-group" href="{{ url_for('createKey') }}" role="button">Upload Answer Key</a>
+    <a class="btn-group" href="{{ url_for('checkExam') }}" role="button">Upload Student Paper</a>
 </div>
 {% endblock %}
