@@ -71,6 +71,8 @@ class StudentPaper(db.Model):
     answers = db.Column(db.PickleType, nullable=False)
     score = db.Column(db.Integer, nullable=False)
     item_analysis = db.Column(db.PickleType, nullable=False)
+    exam_id = db.Column(db.Integer, db.ForeignKey('answer_key.id'), nullable=False)
+    exam = db.relationship('AnswerKey', backref=db.backref('student_papers', lazy=True))
 
 @app.route('/')
 def index():
@@ -155,12 +157,13 @@ def upload_student_paper():
 
             # Save the student paper result in the database
             new_student_paper = StudentPaper(
+                student_name=student_name,
+                student_section=student_section,
                 file_path=filepath,
                 answers=extracted_answers,
                 score=score,
                 item_analysis=item_analysis,
-                student_name=student_name,
-                student_section=student_section
+                exam_id=exam_id
             )
             db.session.add(new_student_paper)
             db.session.commit()
@@ -169,7 +172,7 @@ def upload_student_paper():
             return redirect(url_for('home'))
         else:
             flash('Invalid file type', 'danger')
-    
+
     exams = AnswerKey.query.all()  # Assuming you have exams stored in the AnswerKey table
     return render_template('upload_student_paper.html', exams=exams)
 
@@ -210,11 +213,31 @@ def upload_student_paper():
 #         return render_template('scan-test.html', exam=exam)
 #     return redirect(url_for("checkExam"))
 
-@app.route('/view_results')
+@app.route('/view_results', methods=['GET'])
 @login_required
 def view_results():
-    student_papers = StudentPaper.query.all()
-    return render_template('view_results.html', student_papers=student_papers)
+    selected_exam_id = request.args.get('exam')
+    exams = AnswerKey.query.all()
+
+    if selected_exam_id:
+        student_papers = StudentPaper.query.filter_by(exam_id=selected_exam_id).all()
+    else:
+        student_papers = StudentPaper.query.all()
+
+    return render_template('view_results.html', student_papers=student_papers, exams=exams, selected_exam=selected_exam_id)
+
+@app.route('/delete_all_student_papers', methods=['POST'])
+def delete_all_student_papers():
+    try:
+        # Delete all records from the StudentPaper table
+        db.session.query(StudentPaper).delete()
+        db.session.commit()
+        flash('All student papers deleted successfully.', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Error deleting student papers: {str(e)}', 'danger')
+    
+    return redirect(url_for('view_results'))
 
 @app.route('/view_item_analysis/<int:paper_id>')
 @login_required

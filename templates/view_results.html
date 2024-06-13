@@ -4,30 +4,62 @@
 
 {% block content %}
 <h2>View Results</h2>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Student Name</th>
-            <th>Student Section</th>
-            <th>File Path</th>
-            <th>Score</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for paper in student_papers %}
-        <tr>
-            <td>{{ paper.id }}</td>
-            <td>{{ paper.student_name }}</td>
-            <td>{{ paper.student_section }}</td>
-            <td>{{ paper.file_path }}</td>
-            <td>{{ paper.score }}</td>
-            <td>
-                <a class="btn btn-info" href="{{ url_for('view_item_analysis', paper_id=paper.id) }}">View Item Analysis</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
+
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<!-- Delete All Student Papers -->
+<form method="post" action="{{ url_for('delete_all_student_papers') }}" onsubmit="return confirm('Are you sure you want to delete all student papers?');">
+  <button type="submit" class="btn btn-danger mb-2">Delete All Student Papers</button>
+</form>
+
+<!-- Filter Form -->
+<form method="get" action="{{ url_for('view_results') }}">
+  <div class="form-group">
+    <label for="exam">Select Exam</label>
+    <select class="form-control" id="exam" name="exam">
+      <option value="">All Exams</option>
+      {% for exam in exams %}
+        <option value="{{ exam.id }}" {% if selected_exam and selected_exam == exam.id %}selected{% endif %}>{{ exam.name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Filter</button>
+  </div>
+</form>
+
+<!-- Results Table -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Student Name</th>
+      <th>Student Section</th>
+      <th>File Path</th>
+      <th>Score</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for paper in student_papers %}
+      <tr>
+        <td>{{ paper.id }}</td>
+        <td>{{ paper.student_name }}</td>
+        <td>{{ paper.student_section }}</td>
+        <td>{{ paper.file_path }}</td>
+        <td>{{ paper.score }}</td>
+        <td>
+          <a class="btn btn-info" href="{{ url_for('view_item_analysis', paper_id=paper.id) }}">View Item Analysis</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}
