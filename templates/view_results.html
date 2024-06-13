@@ -36,30 +36,32 @@
 </form>
 
 <!-- Results Table -->
-<table class="table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Student Name</th>
-      <th>Student Section</th>
-      <th>File Path</th>
-      <th>Score</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for paper in student_papers %}
+<div style="overflow-x:auto;">
+  <table>
+    <thead>
       <tr>
-        <td>{{ paper.id }}</td>
-        <td>{{ paper.student_name }}</td>
-        <td>{{ paper.student_section }}</td>
-        <td>{{ paper.file_path }}</td>
-        <td>{{ paper.score }}</td>
-        <td>
-          <a class="btn btn-info" href="{{ url_for('view_item_analysis', paper_id=paper.id) }}">View Item Analysis</a>
-        </td>
+        <th>ID</th>
+        <th>Student Name</th>
+        <th>Student Section</th>
+        <!-- <th>File Path</th> -->
+        <th>Score</th>
+        <th>Actions</th>
       </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {% for paper in student_papers %}
+        <tr>
+          <td>{{ paper.id }}</td>
+          <td>{{ paper.student_name }}</td>
+          <td>{{ paper.student_section }}</td>
+          <!-- <td>{{ paper.file_path }}</td> -->
+          <td>{{ paper.score }}</td>
+          <td>
+            <a class="btn btn-info" href="{{ url_for('view_item_analysis', paper_id=paper.id) }}">View Item Analysis</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

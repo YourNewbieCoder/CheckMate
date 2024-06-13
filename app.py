@@ -118,22 +118,34 @@ def createKey():
     if request.method == 'POST':
         name = request.form['name']  # Get the name from the form
         if 'file' not in request.files:
-            flash('No file part')
+            flash('No file part', 'error')
             return redirect(request.url)
+        
         file = request.files['file']
         if file.filename == '':
-            flash('No selected file')
+            flash('No selected file', 'error')
             return redirect(request.url)
+        
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(app.config['UPLOAD_FOLDER_ANSWER'], filename)
-            file.save(filepath)
-            extracted_answers = extract_answers(filepath)
-            new_answer_key = AnswerKey(name=name, file_path=filepath, answers=extracted_answers)
-            db.session.add(new_answer_key)
-            db.session.commit()
-            flash('Answer key uploaded and processed successfully!')
-            return redirect(url_for('home'))
+            try:
+                filename = secure_filename(file.filename)
+                filepath = os.path.join(app.config['UPLOAD_FOLDER_ANSWER'], filename)
+                file.save(filepath)
+                
+                extracted_answers = extract_answers(filepath)
+                new_answer_key = AnswerKey(name=name, file_path=filepath, answers=extracted_answers)
+                db.session.add(new_answer_key)
+                db.session.commit()
+                
+                flash('Answer key uploaded and processed successfully!', 'info')
+                return redirect(url_for('home'))
+            except Exception as e:
+                flash(f'An error occurred while processing the file: {str(e)}', 'error')
+                return redirect(request.url)
+        else:
+            flash('Invalid file type. Allowed types are png, jpg, jpeg, gif', 'error')
+            return redirect(request.url)
+    
     return render_template('create-key.html')
 
 @app.route('/upload_student_paper', methods=['GET', 'POST'])
