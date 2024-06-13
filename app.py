@@ -16,13 +16,14 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['UPLOAD_FOLDER_ANSWER'] = 'static/test_bank/'
 app.config['UPLOAD_FOLDER_STUDENT'] = 'static/student_papers/'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 app.secret_key = "hello"
 
 # Directory to save captured images
-IMAGE_DIR = os.path.join(app.root_path, 'static/captured_images')
+# IMAGE_DIR = os.path.join(app.root_path, 'static/captured_images')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -351,21 +352,31 @@ def delete_answer_key(key_id):
         flash('Failed to delete answer key', 'danger')
     return redirect(url_for('manage_test_bank'))
 
+# def extract_answers(filepath):
+#     text = pytesseract.image_to_string(Image.open(filepath))
+#     answers = text.split('\n')
+#     return [answer.strip() for answer in answers if answer.strip()]
+
+# def grade_student_paper(exam_id, student_answers):
+#     answer_key = AnswerKey.query.get(exam_id)
+#     if not answer_key:
+#         return 0, []
+
+#     correct_answers = answer_key.answers
+#     score = sum(1 for s, c in zip(student_answers, correct_answers) if s == c)
+#     total_questions = len(correct_answers)
+#     item_analysis = [{'question': i + 1, 'correct': s == c} for i, (s, c) in enumerate(zip(student_answers, correct_answers))]
+#     return score, item_analysis
+
 def extract_answers(filepath):
-    text = pytesseract.image_to_string(Image.open(filepath))
-    answers = text.split('\n')
-    return [answer.strip() for answer in answers if answer.strip()]
+    # Your logic to extract answers here
+    return "Mock extracted answers"
 
-def grade_student_paper(exam_id, student_answers):
-    answer_key = AnswerKey.query.get(exam_id)
-    if not answer_key:
-        return 0, []
 
-    correct_answers = answer_key.answers
-    score = sum(1 for s, c in zip(student_answers, correct_answers) if s == c)
-    total_questions = len(correct_answers)
-    item_analysis = [{'question': i + 1, 'correct': s == c} for i, (s, c) in enumerate(zip(student_answers, correct_answers))]
-    return score, item_analysis
+def grade_student_paper(exam_id, extracted_answers):
+    # Your logic to grade the student paper here
+    # For demo purposes, I'll return a mock score and item analysis
+    return 80, {"item1": "Correct", "item2": "Incorrect"}
 
 if __name__ == "__main__":
     with app.app_context():
